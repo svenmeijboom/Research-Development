@@ -13,7 +13,7 @@ public enum Note {
     EIGHT_REST(1/8),
     SIXTEENTH_REST (1/16);
 
-    private double duration;
+    private double duration; //The duration of the note
 
     private Note(double duration)
     {
