@@ -2,26 +2,30 @@ package com.example.rhythmapp.notes;
 
 public enum Note {
     //The Note class represents the musical notes (as well as rests), with different durations
-    WHOLE_NOTE (4),
-    HALF_NOTE (2),
-    QUARTER_NOTE(1),
-    EIGHTH_NOTE(1/2),
-    SIXTEENTH_NOTE(1/4),
-    WHOLE_REST(4),
-    HALF_REST(2),
-    QUARTER_REST(1),
-    EIGHT_REST(1/2),
-    SIXTEENTH_REST (1/4);
+    WHOLE_NOTE (4, 0),
+    HALF_NOTE (2, 1),
+    QUARTER_NOTE(1,2),
+    EIGHTH_NOTE(0.5,3),
+    SIXTEENTH_NOTE(0.25,4),
+    WHOLE_REST(4,5),
+    HALF_REST(2,6),
+    QUARTER_REST(1,7),
+    EIGHTH_REST(0.5,8),
+    SIXTEENTH_REST (0.25,9);
 
     private double duration; //The duration of the note in beats
+    private int index; //Index is a helper variable to make drawing easier
 
-    private Note(double duration)
+    private Note(double duration, int index)
     {
         this.duration = duration;
+        this.index = index;
     }
 
     public double getDuration()
     {
         return duration;
     }
+
+    public int getIndex() { return index; }
 }

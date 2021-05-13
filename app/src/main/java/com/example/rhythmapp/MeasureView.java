@@ -1,6 +1,7 @@
 package com.example.rhythmapp;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,7 +15,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.example.rhythmapp.notes.Measure;
-import com.example.rhythmapp.notes.Note;
 
 public class MeasureView extends View {
     //MeasureView is used to draw the measures onto the screen
@@ -22,8 +22,8 @@ public class MeasureView extends View {
 
     private Measure currentMeasure;
 
-    //Test:
-    private Bitmap testQBitmap;
+    //Images
+    private Bitmap[] noteImages;
 
     public MeasureView(Context context) {
 
@@ -50,7 +50,20 @@ public class MeasureView extends View {
 
     private void init()
     {
-        testQBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.quarter_note);
+        //Initialize the images
+        //The images have the same index (in noteImages) as the notes
+        noteImages = new Bitmap[10];
+        Resources r = getResources();
+        noteImages[0] = BitmapFactory.decodeResource(r, R.drawable.whole_note);
+        noteImages[1] = BitmapFactory.decodeResource(r, R.drawable.half_note);
+        noteImages[2] = BitmapFactory.decodeResource(r, R.drawable.quarter_note);
+        noteImages[3] = BitmapFactory.decodeResource(r, R.drawable.eighth_note);
+        noteImages[4] = BitmapFactory.decodeResource(r, R.drawable.sixteenth_note);
+        noteImages[5] = BitmapFactory.decodeResource(r, R.drawable.whole_rest);
+        noteImages[6] = BitmapFactory.decodeResource(r, R.drawable.half_rest);
+        noteImages[7] = BitmapFactory.decodeResource(r, R.drawable.quarter_rest);
+        noteImages[8] = BitmapFactory.decodeResource(r, R.drawable.eighth_rest);
+        noteImages[9] = BitmapFactory.decodeResource(r, R.drawable.sixteenth_rest);
     }
 
     public void setCurrentMeasure(Measure m)
@@ -83,7 +96,7 @@ public class MeasureView extends View {
     {
         if (currentMeasure != null)
         {
-            int spacing = currentMeasure.measure.size();
+            int spacing = currentMeasure.getSize();
 
             //Draw time signature:
             String topSig = String.valueOf((int) currentMeasure.getTimeSignature()[0]);
@@ -94,21 +107,14 @@ public class MeasureView extends View {
 
             int curX = w / (spacing + 1);
             int curY = (h / 2) - 120;
-            for (Note n : currentMeasure.measure)
+            for (int i = 0; i < currentMeasure.getSize(); i++)
             {
-                if (n == Note.QUARTER_NOTE)
-                {
-                    canvas.drawBitmap(testQBitmap, curX, curY, p);
-                    Log.println(Log.DEBUG, "DrawTag", "Drew bitmap");
-                }
-
+                canvas.drawBitmap(noteImages[currentMeasure.getNote(i).getIndex()], curX, curY, p);
+                Log.println(Log.DEBUG, "ImageDraw", "Image drawn: " + String.valueOf(currentMeasure.getNote(i).getIndex()));
+                Log.println(Log.DEBUG, "ImageDraw", "Note duration: " + String.valueOf(currentMeasure.getNote(i).getDuration()));
                 curX += w / (spacing + 1);
             }
         }
     }
-
-
-
-
 
 }

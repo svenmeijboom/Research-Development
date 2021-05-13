@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Measure {
     //The measure class represents a musical measure.
 
-    public ArrayList<Note> measure; //A container that contains the actual notes in the measure
+    private ArrayList<Note> measure; //A container that contains the actual notes in the measure
     private double[] timeSignature; //Represents the musical time signature in front of the measure
     private double currentDuration; //A helper variable to determine if more notes can be added
     private double fullDuration; //The full duration of the measure
@@ -52,5 +52,14 @@ public class Measure {
         return timeSignature;
     }
 
+    public Note getNote(int i)
+    {
+        return measure.get(i);
+    }
+
+    public int getSize()
+    {
+        return measure.size();
+    }
 
 }
