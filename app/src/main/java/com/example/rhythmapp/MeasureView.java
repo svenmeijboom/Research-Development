@@ -52,7 +52,7 @@ public class MeasureView extends View {
     {
         //Initialize the images
         //The images have the same index (in noteImages) as the notes
-        noteImages = new Bitmap[10];
+        noteImages = new Bitmap[13];
         Resources r = getResources();
         noteImages[0] = BitmapFactory.decodeResource(r, R.drawable.whole_note);
         noteImages[1] = BitmapFactory.decodeResource(r, R.drawable.half_note);
@@ -64,6 +64,9 @@ public class MeasureView extends View {
         noteImages[7] = BitmapFactory.decodeResource(r, R.drawable.quarter_rest);
         noteImages[8] = BitmapFactory.decodeResource(r, R.drawable.eighth_rest);
         noteImages[9] = BitmapFactory.decodeResource(r, R.drawable.sixteenth_rest);
+        noteImages[10] = BitmapFactory.decodeResource(r, R.drawable.half_note_dot);
+        noteImages[11] = BitmapFactory.decodeResource(r, R.drawable.quarter_note_dot);
+        noteImages[12] = BitmapFactory.decodeResource(r, R.drawable.eighth_note_dot);
     }
 
     public void setCurrentMeasure(Measure m)

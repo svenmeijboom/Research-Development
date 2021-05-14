@@ -40,6 +40,15 @@ public class Measure {
         return true;
     }
 
+    //Remove the final note of the measure
+    public void removeNote()
+    {
+        if (measure.size() > 0) {
+            currentDuration -= measure.get(measure.size() - 1).getDuration();
+            measure.remove(measure.size() - 1);
+        }
+    }
+
     //isFull returns true if the current measure is full
     public boolean isFull()
     {
