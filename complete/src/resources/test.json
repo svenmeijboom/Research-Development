@@ -1,0 +1,26 @@
+{
+    "group": {
+        "rythm": "hoofdschouderknieenteen",
+        "users": [
+            {
+                "name": "klaas",
+                "score": 12
+            },
+            {
+                "name": "bert",
+                "score": 2234
+            }
+        ],
+        "rythmName": "track7"
+    },
+    "users": [
+        {
+            "name": "klaas",
+            "score": 12
+        },
+        {
+            "name": "bert",
+            "score": 2234
+        }
+    ]
+}
