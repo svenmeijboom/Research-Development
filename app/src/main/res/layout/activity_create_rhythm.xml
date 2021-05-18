@@ -6,4 +6,148 @@
     android:layout_height="match_parent"
     tools:context=".CreateRhythmActivity">
 
+    <com.example.rhythmapp.MeasureView
+        android:id="@+id/measureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="480dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/whole_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toStartOf="@+id/half_note_button"
+        app:layout_constraintHorizontal_bias="0.661"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/measureView"
+        app:srcCompat="@drawable/whole_note" />
+
+    <ImageButton
+        android:id="@+id/half_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/quarter_note_button"
+        app:layout_constraintTop_toBottomOf="@+id/measureView"
+        app:srcCompat="@drawable/half_note" />
+
+    <ImageButton
+        android:id="@+id/quarter_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/measureView"
+        app:srcCompat="@drawable/quarter_note" />
+
+    <ImageButton
+        android:id="@+id/eighth_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintStart_toEndOf="@+id/quarter_note_button"
+        app:layout_constraintTop_toBottomOf="@+id/measureView"
+        app:srcCompat="@drawable/eighth_note" />
+
+    <ImageButton
+        android:id="@+id/sixteenth_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintStart_toEndOf="@+id/eighth_note_button"
+        app:layout_constraintTop_toBottomOf="@+id/measureView"
+        app:srcCompat="@drawable/sixteenth_note" />
+
+    <ImageButton
+        android:id="@+id/whole_rest_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/half_rest_button"
+        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whole_note_button"
+        app:layout_constraintVertical_bias="0.263"
+        app:srcCompat="@drawable/whole_rest" />
+
+    <ImageButton
+        android:id="@+id/half_rest_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/quarter_rest_button"
+        app:layout_constraintTop_toBottomOf="@+id/half_note_button"
+        app:layout_constraintVertical_bias="0.263"
+        app:srcCompat="@drawable/half_rest" />
+
+    <ImageButton
+        android:id="@+id/quarter_rest_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quarter_note_button"
+        app:layout_constraintVertical_bias="0.21"
+        app:srcCompat="@drawable/quarter_rest" />
+
+    <ImageButton
+        android:id="@+id/eighth_rest_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/quarter_rest_button"
+        app:layout_constraintTop_toBottomOf="@+id/eighth_note_button"
+        app:layout_constraintVertical_bias="0.18"
+        app:srcCompat="@drawable/eighth_rest" />
+
+    <ImageButton
+        android:id="@+id/sixteenth_rest_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.323"
+        app:layout_constraintStart_toEndOf="@+id/eighth_rest_button"
+        app:layout_constraintTop_toBottomOf="@+id/sixteenth_note_button"
+        app:layout_constraintVertical_bias="0.18"
+        app:srcCompat="@drawable/sixteenth_rest" />
+
+    <Button
+        android:id="@+id/remove_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dot_note_button"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quarter_rest_button" />
+
+    <Button
+        android:id="@+id/dot_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="92dp"
+        android:text="Dot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quarter_rest_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
