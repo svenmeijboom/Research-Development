@@ -1,6 +1,8 @@
 package com.example.rhythmapp;
 
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,9 +14,12 @@ public class StartPracticeActivity extends AppCompatActivity {
     private Measure measure;
     private MeasureView mView;
 
+
     //Test BPM:
     private int BPM = 100;
     private boolean hasStarted;
+
+    private RhythmThread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +38,27 @@ public class StartPracticeActivity extends AppCompatActivity {
 
             if (!hasStarted) {
                 startButton.setText("Stop");
-                hasStarted = true;
+                startPractice();
             } else {
                 startButton.setText("Start");
                 hasStarted = false;
             }
         });
     }
+
+    public void screenTapped(View v)
+    {
+        if (hasStarted)
+        {
+            thread.setLastTap(SystemClock.elapsedRealtime());
+        }
+    }
+
+    private void startPractice()
+    {
+        hasStarted = true;
+        thread = new RhythmThread(measure, 50, BPM);
+        thread.start();
+    }
+
 }
