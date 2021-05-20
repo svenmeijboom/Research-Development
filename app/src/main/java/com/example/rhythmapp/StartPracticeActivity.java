@@ -3,7 +3,6 @@ package com.example.rhythmapp;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -75,7 +74,6 @@ public class StartPracticeActivity extends AppCompatActivity {
 
         runOnUiThread(() -> {
             pointView.setText("Points: " + String.valueOf(p));
-            Log.println(Log.DEBUG, "pointsTag", "Setting points to: " + p);
         });
 
     }
@@ -85,11 +83,7 @@ public class StartPracticeActivity extends AppCompatActivity {
         hasStarted = true;
 
         thread = new RhythmThread(measure, 50, BPM, () -> {
-
-            Log.println(Log.DEBUG, "pointsTag", "Edited points!");
-
             int points = thread.getPoints();
-
             setPoints(points);
 
         });
