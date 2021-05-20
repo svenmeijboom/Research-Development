@@ -70,4 +70,9 @@ public class Measure {
     {
         return measure.size();
     }
+
+    public double getDuration()
+    {
+        return currentDuration;
+    }
 }

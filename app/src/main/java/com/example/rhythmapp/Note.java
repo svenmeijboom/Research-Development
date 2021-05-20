@@ -3,30 +3,32 @@ package com.example.rhythmapp;
 public enum Note {
     //The Note class represents the musical notes (as well as rests), with different durations
     //"Basic" notes
-    WHOLE_NOTE (4, 0),
-    HALF_NOTE (2, 1),
-    QUARTER_NOTE(1,2),
-    EIGHTH_NOTE(0.5,3),
-    SIXTEENTH_NOTE(0.25,4),
-    WHOLE_REST(4,5),
-    HALF_REST(2,6),
-    QUARTER_REST(1,7),
-    EIGHTH_REST(0.5,8),
-    SIXTEENTH_REST (0.25,9),
+    WHOLE_NOTE (4, 0, false),
+    HALF_NOTE (2, 1, false),
+    QUARTER_NOTE(1,2, false),
+    EIGHTH_NOTE(0.5,3, false),
+    SIXTEENTH_NOTE(0.25,4, false),
+    WHOLE_REST(4,5, true),
+    HALF_REST(2,6, true),
+    QUARTER_REST(1,7, true),
+    EIGHTH_REST(0.5,8, true),
+    SIXTEENTH_REST (0.25,9, true),
 
     //"Special" notes
-    HALF_NOTE_DOT(3, 10),
-    QUARTER_NOTE_DOT(1.5, 11),
-    EIGHTH_NOTE_DOT(0.75, 12);
+    HALF_NOTE_DOT(3, 10, false),
+    QUARTER_NOTE_DOT(1.5, 11, false),
+    EIGHTH_NOTE_DOT(0.75, 12, false);
 
 
     private double duration; //The duration of the note in beats
     private int index; //Index is a helper variable to make drawing easier
+    private boolean isRest;
 
-    private Note(double duration, int index)
+    private Note(double duration, int index, boolean rest)
     {
         this.duration = duration;
         this.index = index;
+        this.isRest = rest;
     }
 
     public double getDuration()
@@ -37,4 +39,6 @@ public enum Note {
     public int getIndex() {
         return index;
     }
+
+    public boolean isRest() { return isRest; }
 }
