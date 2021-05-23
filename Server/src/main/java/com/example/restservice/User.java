@@ -2,19 +2,15 @@ package com.example.restservice;
 
 public class User {
 
-	private final long id;
-	private final int xscore;
+	
+	private int xscore;
 	private final String name;
 
-	public User(long id, String name, int score) {
-		this.id = id;
+	public User(String name, int score) {
 		this.name = name;
 		this.xscore = score;
 	}
 
-	public long getId() {
-		return id;
-	}
 
 	public String getName() {
 		return name;
@@ -22,5 +18,9 @@ public class User {
 
 	public int getScore(){
 		return xscore;
+	}
+
+	public void setScore(int score){
+		this.xscore = score;
 	}
 }

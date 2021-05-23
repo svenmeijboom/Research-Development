@@ -1,26 +1,26 @@
 {
-    "rythm": "dododododo",
+    "group": {
+        "rythm": "hoofdschouderknieenteen",
+        "users": [
+            {
+                "name": "klaas",
+                "score": 12
+            },
+            {
+                "name": "bert",
+                "score": 2234
+            }
+        ],
+        "rythmName": "track7"
+    },
     "users": [
         {
-            "id": 1,
-            "name": "Janssen",
-            "score": 2
+            "name": "klaas",
+            "score": 12
         },
         {
-            "id": 0,
-            "name": "Pietersen",
-            "score": 15
-        },
-        {
-            "id": 2,
-            "name": "Harryiedt",
-            "score": 18
-        },
-        {
-            "id": 5,
-            "name": "Sambalsauys",
-            "score": 3555
+            "name": "bert",
+            "score": 2234
         }
-    ],
-    "rythmName": "Track1"
+    ]
 }
