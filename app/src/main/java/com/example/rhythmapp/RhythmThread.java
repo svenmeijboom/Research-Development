@@ -131,6 +131,8 @@ public class RhythmThread extends Thread {
 
         int curNote = 0;
         long startMeasureTime = SystemClock.elapsedRealtime();
+        boolean firstMeasureDone = false; //First measure does not count toward score
+
 
         while(!getShouldStop())
         {
@@ -146,17 +148,27 @@ public class RhythmThread extends Thread {
             //Have we pressed in the correct time interval?
             if (getLastTap() != -1 && startMeasureTime + timeStamps[curNote] - delta <= getLastTap() && startMeasureTime + timeStamps[curNote] + delta >= getLastTap())
             {
-                addPoints(10);
+                if (firstMeasureDone)
+                {
+                    addPoints(10);
+                }
+
                 curNote++;
             }
             else if (getLastTap() != -1)
             {
                 //Tapped at the wrong time
-                addPoints(-10);
+                if (firstMeasureDone)
+                {
+                    addPoints(-10);
+                }
             }
             else if (startMeasureTime + timeStamps[curNote] + delta <= curTime) //Have we passed the current note?
             {
-                addPoints(-10);
+                if (firstMeasureDone)
+                {
+                    addPoints(-10);
+                }
                 curNote++;
             }
 
@@ -165,6 +177,7 @@ public class RhythmThread extends Thread {
             {
                 startMeasureTime = SystemClock.elapsedRealtime();
                 curNote = 0;
+                firstMeasureDone = true;
             }
         }
     }

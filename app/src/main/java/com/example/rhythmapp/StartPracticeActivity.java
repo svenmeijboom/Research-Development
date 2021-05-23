@@ -41,9 +41,11 @@ public class StartPracticeActivity extends AppCompatActivity {
         startButton.setOnClickListener(v -> {
 
             if (!hasStarted) {
+
                 startButton.setText("Stop");
                 startPractice();
                 play(startButton);
+
             } else {
 
                 startButton.setText("Start");
