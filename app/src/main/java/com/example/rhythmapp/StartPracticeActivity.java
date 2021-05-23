@@ -10,8 +10,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StartPracticeActivity extends AppCompatActivity {
-    public MediaPlayer playerHigh;
-    public MediaPlayer playerLow;
+
+    private Metronome metronome;
+    private MediaPlayer playerHigh;
+    private MediaPlayer playerLow;
 
     private Measure measure;
     private MeasureView mView;
@@ -35,15 +37,20 @@ public class StartPracticeActivity extends AppCompatActivity {
         hasStarted = false;
 
         Button startButton = (Button) findViewById(R.id.start_practice_button);
+
         startButton.setOnClickListener(v -> {
 
             if (!hasStarted) {
                 startButton.setText("Stop");
-                hasStarted = true;
                 startPractice();
+                play(startButton);
             } else {
+
                 startButton.setText("Start");
+                thread.shouldStop();
+                metronome.setStop();
                 hasStarted = false;
+
             }
         });
 
@@ -58,8 +65,8 @@ public class StartPracticeActivity extends AppCompatActivity {
             playerLow = MediaPlayer.create(this, R.raw.click);
         }
 
-        Metronome metronome1 = new Metronome(BPM,4, playerHigh, playerLow);
-        metronome1.start();
+        metronome = new Metronome(BPM, (int) measure.getTimeSignature()[1], playerHigh, playerLow);
+        metronome.start();
     }
 
     public void screenTapped(View v)
@@ -73,7 +80,7 @@ public class StartPracticeActivity extends AppCompatActivity {
     private void setPoints(int p) {
 
         runOnUiThread(() -> {
-            pointView.setText("Points: " + String.valueOf(p));
+            pointView.setText("Points: " + p);
         });
 
     }

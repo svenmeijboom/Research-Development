@@ -1,7 +1,5 @@
 package com.example.restservice;
 
-import java.util.*;
-
 public class RythmGroup {
     
     private String rythmname;

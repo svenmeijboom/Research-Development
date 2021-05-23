@@ -30,7 +30,7 @@ public class RhythmThread extends Thread {
         shouldStop=false;
         points = 0;
         this.listener = pointListener;
-
+        this.BPM = BPM;
 
     }
 
@@ -105,7 +105,15 @@ public class RhythmThread extends Thread {
     }
 
     public int getPoints() {
-        return points;
+        pointLock.lock();
+        try
+        {
+            return points;
+        }
+        finally
+        {
+            pointLock.unlock();
+        }
     }
 
     @Override
@@ -117,7 +125,7 @@ public class RhythmThread extends Thread {
         timeStamps[0] = 0;
         for (int i = 1; i < measure.getSize(); i++)
         {
-            timeStamps[i] = timeStamps[i - 1] + ((long) (measure.getNote(i-1).getDuration() * 60.0 / BPM * 1000));
+            timeStamps[i] = timeStamps[i - 1] + ((long) (measure.getNote(i-1).getDuration() * 60.0 / BPM * 1000.0));
             Log.println(Log.DEBUG, "stampTag", "Stamp: " + timeStamps[i]);
         }
 
@@ -127,6 +135,7 @@ public class RhythmThread extends Thread {
         while(!getShouldStop())
         {
             long curTime = SystemClock.elapsedRealtime();
+            setLastTap(-1); //Reset lastTap to make sure it does not carry over the previous tap
 
             //Is the current note a rest?
             if (measure.getNote(curNote).isRest())
@@ -137,7 +146,7 @@ public class RhythmThread extends Thread {
             //Have we pressed in the correct time interval?
             if (getLastTap() != -1 && startMeasureTime + timeStamps[curNote] - delta <= getLastTap() && startMeasureTime + timeStamps[curNote] + delta >= getLastTap())
             {
-                addPoints(100);
+                addPoints(10);
                 curNote++;
             }
             else if (getLastTap() != -1)
@@ -147,14 +156,11 @@ public class RhythmThread extends Thread {
             }
             else if (startMeasureTime + timeStamps[curNote] + delta <= curTime) //Have we passed the current note?
             {
-                Log.println(Log.DEBUG, "timeTag", "Times: " + (startMeasureTime + timeStamps[curNote] + delta) + ", " + curTime);
                 addPoints(-10);
                 curNote++;
             }
 
-            setLastTap(-1);
-
-            //Have we reached the end of the measure
+            //Have we reached the end of the measure?
             if (curNote == measure.getSize())
             {
                 startMeasureTime = SystemClock.elapsedRealtime();

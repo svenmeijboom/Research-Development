@@ -19,10 +19,9 @@ public enum Note {
     QUARTER_NOTE_DOT(1.5, 11, false),
     EIGHTH_NOTE_DOT(0.75, 12, false);
 
-
-    private double duration; //The duration of the note in beats
-    private int index; //Index is a helper variable to make drawing easier
-    private boolean isRest;
+    private final double duration; //The duration of the note in beats
+    private final int index; //Index is a helper variable to make drawing easier
+    private final boolean isRest;
 
     private Note(double duration, int index, boolean rest)
     {
