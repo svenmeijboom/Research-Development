@@ -14,3 +14,6 @@
 .cxx
 local.properties
 Server/target
+Server/.settings
+Server/.classpath
+Server/.project
