@@ -1,9 +1,12 @@
 package com.example.rhythmapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class CreateRhythmActivity extends AppCompatActivity {
@@ -129,6 +132,26 @@ public class CreateRhythmActivity extends AppCompatActivity {
             }
 
             mView.setCurrentMeasure(measure);
+        });
+
+
+        Button practiceButton = (Button) findViewById(R.id.to_practice_button);
+        practiceButton.setOnClickListener(v -> {
+            //Switch to the practice activity
+            if (measure.isFull())
+            {
+
+                Intent intent = new Intent(this, StartPracticeActivity.class);
+                intent.putExtra("ENCODED_MEASURE", MeasureCoder.encodeMeasure(measure));
+                startActivity(intent);
+
+            }
+            else
+            {
+                Toast t = Toast.makeText(this, "Please fill the measure!", Toast.LENGTH_SHORT);
+                t.show();
+            }
+
         });
     }
 }

@@ -1,5 +1,6 @@
 package com.example.rhythmapp;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -30,8 +31,19 @@ public class StartPracticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_practice);
 
-        //Test measure
-        measure = MeasureCoder.decodeString("4,2I2,2,3,3,2");
+        //Get the measure string, if it is available
+        Intent intent = getIntent();
+        String s = intent.getExtras().getString("ENCODED_MEASURE");
+        if (s != null)
+        {
+            measure = MeasureCoder.decodeString(s);
+        }
+        else
+        {
+            //Load the default test measure
+            measure = MeasureCoder.decodeString("4,2I2,2,2,2");
+        }
+
         mView = (MeasureView) findViewById(R.id.practiceMView);
         mView.setCurrentMeasure(measure);
         hasStarted = false;
