@@ -57,7 +57,7 @@ public class StartPracticeActivity extends AppCompatActivity {
 
                 startButton.setText("Stop");
                 startPractice();
-                play(startButton);
+                playMetronome();
 
             } else {
 
@@ -72,7 +72,7 @@ public class StartPracticeActivity extends AppCompatActivity {
         pointView = (TextView) findViewById(R.id.point_view);
     }
 
-    public void play(View view) {
+    public void playMetronome() {
         if(playerHigh == null) {
             playerHigh = MediaPlayer.create(this, R.raw.high);
         }
@@ -80,7 +80,7 @@ public class StartPracticeActivity extends AppCompatActivity {
             playerLow = MediaPlayer.create(this, R.raw.click);
         }
 
-        metronome = new Metronome(BPM, (int) measure.getTimeSignature()[1], playerHigh, playerLow);
+        metronome = new Metronome(BPM, (int) (4.0 / measure.getBeatUnit().getDuration()), playerHigh, playerLow);
         metronome.start();
     }
 

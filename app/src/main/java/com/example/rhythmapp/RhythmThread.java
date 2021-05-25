@@ -31,7 +31,6 @@ public class RhythmThread extends Thread {
         points = 0;
         this.listener = pointListener;
         this.BPM = BPM;
-
     }
 
     public void setLastTap(long l)
@@ -147,6 +146,7 @@ public class RhythmThread extends Thread {
                 {
                     startMeasureTime = SystemClock.elapsedRealtime();
                     curNote = 0;
+                    firstMeasureDone = true;
                 }
             }
 
@@ -187,6 +187,4 @@ public class RhythmThread extends Thread {
             }
         }
     }
-
-
 }
