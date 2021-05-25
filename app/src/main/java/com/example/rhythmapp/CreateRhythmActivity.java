@@ -14,6 +14,7 @@ public class CreateRhythmActivity extends AppCompatActivity {
 
     private Measure measure;
     private MeasureView mView;
+    private int curSig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,8 @@ public class CreateRhythmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_rhythm);
 
         measure = new Measure(4, Note.QUARTER_NOTE);
+
+        curSig = 0;
 
         mView = (MeasureView) findViewById(R.id.measureView);
         mView.setCurrentMeasure(measure);
@@ -155,5 +158,30 @@ public class CreateRhythmActivity extends AppCompatActivity {
             }
 
         });
+
+        Button timeSigBut = (Button) findViewById(R.id.change_timesig_button);
+        timeSigBut.setOnClickListener(v -> {
+            //Switch time signature between 4/4, 3/4, 3/8 and 6/8
+            curSig++;
+            switch(curSig)
+            {
+                case 1: //Change to 3/4
+                    measure = new Measure(3, Note.QUARTER_NOTE);
+                    break;
+                case 2: //Change to 3/8
+                    measure = new Measure(3, Note.EIGHTH_NOTE);
+                    break;
+                case 3: //Change to 6/8
+                    measure = new Measure(6, Note.EIGHTH_NOTE);
+                    break;
+                default: //Switch to 4/4
+                    measure = new Measure(4, Note.QUARTER_NOTE);
+                    curSig = 0;
+                    break;
+            }
+
+            mView.setCurrentMeasure(measure);
+        });
+
     }
 }
