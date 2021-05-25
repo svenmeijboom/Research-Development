@@ -9,6 +9,7 @@ public class Measure {
     private double[] timeSignature; //Represents the musical time signature in front of the measure
     private double currentDuration; //A helper variable to determine if more notes can be added
     private double fullDuration; //The full duration of the measure
+    private Note beatUnit;
 
     //The constructor contains the numBeats and beatUnit parameters, which are to be used as follows:
     //If the musical measure is for example 3/4, set numBeats = 3 and beatUnit = QUARTER_NOTE
@@ -19,7 +20,7 @@ public class Measure {
         timeSignature[1] = beatUnit.getDuration();
         fullDuration = numBeats * beatUnit.getDuration();
         currentDuration = 0;
-
+        this.beatUnit = beatUnit;
         measure = new ArrayList<Note>();
     }
 
@@ -75,4 +76,6 @@ public class Measure {
     {
         return currentDuration;
     }
+
+    public Note getBeatUnit() { return  beatUnit; }
 }

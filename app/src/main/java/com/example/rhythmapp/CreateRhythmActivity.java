@@ -2,6 +2,7 @@ package com.example.rhythmapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -143,6 +144,7 @@ public class CreateRhythmActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, StartPracticeActivity.class);
                 intent.putExtra("ENCODED_MEASURE", MeasureCoder.encodeMeasure(measure));
+                Log.println(Log.DEBUG, "intTag", "Succesfully created intent with string: " + MeasureCoder.encodeMeasure(measure));
                 startActivity(intent);
 
             }

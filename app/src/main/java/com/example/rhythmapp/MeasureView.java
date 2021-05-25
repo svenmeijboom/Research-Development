@@ -101,7 +101,7 @@ public class MeasureView extends View {
 
             //Draw time signature:
             String topSig = String.valueOf((int) currentMeasure.getTimeSignature()[0]);
-            String botSig = String.valueOf((int) (4 * currentMeasure.getTimeSignature()[1]));
+            String botSig = String.valueOf((int) (4.0 / currentMeasure.getTimeSignature()[1]));
             p.setTextSize(100);
             canvas.drawText(topSig, 5, h / 2 - 10, p);
             canvas.drawText(botSig, 5, h/2 + 90, p);

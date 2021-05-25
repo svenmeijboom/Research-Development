@@ -2,9 +2,6 @@ package com.example.rhythmapp;
 
 import android.util.Log;
 
-import com.example.rhythmapp.Measure;
-import com.example.rhythmapp.Note;
-
 public class MeasureCoder {
 
     //convert a measure to a string:
@@ -12,9 +9,9 @@ public class MeasureCoder {
         StringBuilder str = new StringBuilder();
 
         //Encode the time signature, e.g. 3/4 becomes 3,2, as QUARTER_NOTE has index 2
-        str.append(String.valueOf(m.getTimeSignature()[0]));
+        str.append(String.valueOf((int) m.getTimeSignature()[0]));
         str.append(",");
-        str.append(String.valueOf(m.getTimeSignature()[1]));
+        str.append(String.valueOf((int) (m.getBeatUnit().getIndex())));
 
         //Separator line is uppercase i
         str.append("I");

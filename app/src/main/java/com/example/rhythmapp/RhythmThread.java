@@ -143,6 +143,11 @@ public class RhythmThread extends Thread {
             if (measure.getNote(curNote).isRest())
             {
                 curNote++;
+                if (curNote == measure.getSize())
+                {
+                    startMeasureTime = SystemClock.elapsedRealtime();
+                    curNote = 0;
+                }
             }
 
             //Have we pressed in the correct time interval?
@@ -160,14 +165,15 @@ public class RhythmThread extends Thread {
                 //Tapped at the wrong time
                 if (firstMeasureDone)
                 {
-                    addPoints(-10);
+                    //addPoints(-10);
                 }
             }
-            else if (startMeasureTime + timeStamps[curNote] + delta <= curTime) //Have we passed the current note?
+            else if (startMeasureTime + timeStamps[curNote] + delta <= curTime)
             {
+                //We have already missed the current note
                 if (firstMeasureDone)
                 {
-                    addPoints(-10);
+                    //addPoints(-10);
                 }
                 curNote++;
             }

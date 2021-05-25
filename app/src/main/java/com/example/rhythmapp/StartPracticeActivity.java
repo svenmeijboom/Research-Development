@@ -33,9 +33,10 @@ public class StartPracticeActivity extends AppCompatActivity {
 
         //Get the measure string, if it is available
         Intent intent = getIntent();
-        String s = intent.getExtras().getString("ENCODED_MEASURE");
-        if (s != null)
+
+        if (intent.getExtras() != null)
         {
+            String s = intent.getExtras().getString("ENCODED_MEASURE");
             measure = MeasureCoder.decodeString(s);
         }
         else
@@ -106,7 +107,6 @@ public class StartPracticeActivity extends AppCompatActivity {
         thread = new RhythmThread(measure, 50, BPM, () -> {
             int points = thread.getPoints();
             setPoints(points);
-
         });
 
         thread.start();
